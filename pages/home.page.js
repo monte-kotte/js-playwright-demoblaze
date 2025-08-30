@@ -18,5 +18,4 @@ export default class HomePage extends BasePage {
     async openProduct(id) {
         await this.page.click(this.selectors.productBtn(id));
     }
-
 }

@@ -1,6 +1,5 @@
 import BasePage from './base.page.js';
-export { user } from '../data/users.js'
-
+export { user } from '../data/users.js';
 
 export default class LoginPage extends BasePage {
     constructor(page) {

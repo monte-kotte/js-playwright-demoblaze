@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test';
 import path from 'path';
-import PomManager from '../pages/manager/pom.manager.js';
 import { user } from '../data/users.js';
+import PomManager from '../pages/manager/pom.manager.js';
 
 const STORAGE_STATE = path.join(__dirname, '../playwright/.auth/user.json');
 
