@@ -1,5 +1,8 @@
-// @ts-check
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from '@playwright/test';
+import path from 'path';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 module.exports = defineConfig({
   testDir: './tests',
@@ -14,7 +17,7 @@ module.exports = defineConfig({
     ['html', { outputFolder: 'playwright-report', open: 'never' }]
   ],
   use: {
-    baseURL: 'https://www.demoblaze.com/',
+    baseURL: process.env.BASE_URL,
     trace: 'on-first-retry',
   },
 
