@@ -1,4 +1,4 @@
-import test from '../fixtures/test.setup.js';
+import { test } from '../fixtures/test.setup.js';
 
 test.describe('Demoblaze home page', () => {
   test('load store', async ({ pm }) => {

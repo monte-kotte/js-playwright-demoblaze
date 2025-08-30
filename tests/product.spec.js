@@ -1,4 +1,4 @@
-import test from '../fixtures/test.setup.js';
+import { test } from '../fixtures/test.setup.js';
 import { expect } from '@playwright/test';
 import { products } from '../data/products.js';
 

@@ -1,15 +1,12 @@
-import test from '../fixtures/test.setup.js';
+import { test } from '../fixtures/test.setup.js';
 import { expect } from '@playwright/test';
 import { user } from '../data/users.js'
 
 test.describe('Login', () => {
-    test('success login', async ({ pm }) => {
-        await pm.homePage.navigate();
-        await pm.homePage.expectTitleContains('STORE');
-        await pm.homePage.openLoginForm();
+    test('success login', async ({ authPm }) => {
+        await authPm.homePage.navigate();
 
-        await pm.loginPage.login(user)
-        const curUserName = await pm.homePage.getCurrentUserName();
+        const curUserName = await authPm.homePage.getCurrentUserName();
         expect(curUserName).toContain(user.username);
     });
 })

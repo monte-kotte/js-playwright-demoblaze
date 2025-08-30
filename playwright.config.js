@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 module.exports = defineConfig({
+  globalSetup: path.join(__dirname, 'fixtures/global-setup.js'),
   testDir: './tests',
   timeout: 60 * 1000,
   expect: {
