@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 module.exports = defineConfig({
-  globalSetup: path.join(__dirname, 'fixtures/global-setup.js'),
   testDir: './tests',
   timeout: 60 * 1000,
   expect: {
@@ -23,13 +22,27 @@ module.exports = defineConfig({
   },
 
   projects: [
+    { name: 'setup', testMatch: /.*\.setup\.js/ },
     {
-      name: 'chromium',
+      name: 'chromium-auth',
+      testMatch: /tests\/auth\/.*\.spec\.js/,
+      use: {
+        browserName: 'chromium',
+        storageState: 'playwright/.auth/user.json',
+        headless: false,
+        screenshot: 'only-on-failure',
+        trace: 'on-first-retry',
+      },
+      dependencies: ['setup'],
+    },
+    {
+      name: 'chromium-anon',
+      testIgnore: /tests\/auth\/.*/,
       use: {
         browserName: 'chromium',
         headless: false,
         screenshot: 'only-on-failure',
-        trace: 'on-first-retry'
+        trace: 'on-first-retry',
       },
     },
   ],

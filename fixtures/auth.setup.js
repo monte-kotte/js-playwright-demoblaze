@@ -5,7 +5,7 @@ import PomManager from '../pages/manager/pom.manager.js';
 
 const STORAGE_STATE = path.join(__dirname, '../playwright/.auth/user.json');
 
-async function globalSetup() {
+async function authSetup() {
     const browser = await chromium.launch();
     const context = await browser.newContext({
         baseURL: process.env.BASE_URL
@@ -22,4 +22,4 @@ async function globalSetup() {
     await browser.close();
 }
 
-export default globalSetup;
+export default authSetup;
