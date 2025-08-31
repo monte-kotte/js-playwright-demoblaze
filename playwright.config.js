@@ -36,7 +36,7 @@ module.exports = defineConfig({
       dependencies: ['setup'],
     },
     {
-      name: 'chromium-anon',
+      name: 'chromium',
       testIgnore: /tests\/auth\/.*/,
       use: {
         browserName: 'chromium',
