@@ -5,12 +5,6 @@ import PomManager from '../pages/manager/pom.manager.js';
 const STORAGE_STATE = path.join(__dirname, '../playwright/.auth/user.json');
 
 export const test = base.extend({
-    browser: async ({ }, use) => {
-        const browser = await chromium.launch();
-        await use(browser);
-        await browser.close();
-    },
-
     context: async ({ browser }, use) => {
         const context = await browser.newContext();
         await use(context);
