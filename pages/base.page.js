@@ -7,7 +7,7 @@ export default class BasePage {
     }
 
     selectors = {
-        cartBtn: "#cartur",
+        cartBtn: '#cartur',
         loginBtn: '#login2',
         currentUser: '#nameofuser',
     }
@@ -25,6 +25,7 @@ export default class BasePage {
     }
 
     async getCurrentUserName() {
+        //    await waitForPageLoad(this.page);
         const locator = await waitForVisible(this.page, this.selectors.currentUser);
         return locator.textContent();
     }

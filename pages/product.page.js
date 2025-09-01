@@ -8,9 +8,10 @@ export default class ProductPage extends BasePage {
 
     selectors = {
         ...this.selectors,
-        title: "#tbodyid>.name",
+        title: '#tbodyid>.name',
         price: 'h3.price-container',
         fullDescription: '#more-information p',
+        addToCartBtn: '.btn-success',
     }
 
     async navigate(productId) {
@@ -36,5 +37,9 @@ export default class ProductPage extends BasePage {
             price: await this.getPrice(),
             description: await this.getFullDescription(),
         };
+    }
+
+    async addProductToCart() {
+        await this.page.click(this.selectors.addToCartBtn);
     }
 }
