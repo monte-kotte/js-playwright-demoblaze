@@ -8,10 +8,6 @@ export default class CartPage extends BasePage {
 
     selectors = {
         ...this.selectors,
-    }
-
-    selectors = {
-        ...this.selectors,
         productTitle: '#tbodyid tr:ntH-child(1) td:nth-child(2)',
         productPrice: '#tbodyid tr:ntH-child(1) td:nth-child(3)',
         placeOrderBtn: 'button[data-target="#orderModal"]',

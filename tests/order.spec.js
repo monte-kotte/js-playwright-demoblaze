@@ -26,4 +26,3 @@ test.describe('Order', () => {
         expect(result).toBe('Thank you for your purchase!');
     });
 });
-
