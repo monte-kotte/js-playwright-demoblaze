@@ -21,7 +21,10 @@ module.exports = defineConfig({
   },
 
   projects: [
-    { name: 'setup', testMatch: /.*\.setup\.js/ },
+    {
+      name: 'auth-setup',
+      testMatch: /.*\.auth\.setup\.js/,
+    },
     {
       name: 'chromium-auth',
       testMatch: /tests\/auth\/.*\.spec\.js/,
@@ -32,7 +35,7 @@ module.exports = defineConfig({
         screenshot: 'only-on-failure',
         trace: 'on-first-retry',
       },
-      dependencies: ['setup'],
+      dependencies: ['auth-setup'],
     },
     {
       name: 'chromium',
