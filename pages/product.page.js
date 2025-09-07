@@ -4,14 +4,11 @@ export default class ProductPage extends BasePage {
     constructor(page) {
         super(page);
         this.page = page;
-    }
 
-    selectors = {
-        ...this.selectors,
-        title: '#tbodyid>.name',
-        price: 'h3.price-container',
-        fullDescription: '#more-information p',
-        addToCartBtn: '.btn-success',
+        this.title = this.page.locator('#tbodyid>.name');
+        this.price = this.page.locator('h3.price-container');
+        this.fullDescription = this.page.locator('#more-information p');
+        this.addToCartBtn = this.page.locator('.btn-success');
     }
 
     async navigate(productId) {
@@ -19,15 +16,15 @@ export default class ProductPage extends BasePage {
     }
 
     async getProductTitle() {
-        return await this.page.textContent(this.selectors.title);
+        return await this.title.textContent();
     }
 
     async getPrice() {
-        return await this.page.textContent(this.selectors.price);
+        return await this.price.textContent();
     }
 
     async getFullDescription() {
-        const text = await this.page.textContent(this.selectors.fullDescription);
+        const text = await this.fullDescription.textContent();
         return text.replace(/\s+/g, ' ').trim();
     }
 
@@ -40,6 +37,6 @@ export default class ProductPage extends BasePage {
     }
 
     async addProductToCart() {
-        await this.page.click(this.selectors.addToCartBtn);
+        await this.addToCartBtn.click();
     }
 }

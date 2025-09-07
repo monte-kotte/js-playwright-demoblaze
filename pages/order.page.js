@@ -4,27 +4,24 @@ export default class OrderPage extends BasePage {
     constructor(page) {
         super(page);
         this.page = page;
-    }
 
-    selectors = {
-        ...this.selectors,
-        nameInput: '#name',
-        countryInput: '#country',
-        cityInput: '#city',
-        creditCardInput: '#card',
-        purchaseBtn: '#orderModal button.btn-primary',
-        afterOrderAlertHeader: '.sweet-alert h2',
+        this.nameInput = this.page.locator('#name');
+        this.countryInput = this.page.locator('#country');
+        this.cityInput = this.page.locator('#city');
+        this.creditCardInput = this.page.locator('#card');
+        this.purchaseBtn = this.page.locator('#orderModal button.btn-primary');
+        this.afterOrderAlertHeader = this.page.locator('.sweet-alert h2');
     }
 
     async fillOrderForm(data) {
-        await this.page.locator(this.selectors.nameInput).fill(data.name);
-        await this.page.locator(this.selectors.countryInput).fill(data.country);
-        await this.page.locator(this.selectors.cityInput).fill(data.city);
-        await this.page.locator(this.selectors.creditCardInput).fill(data.card);
-        await this.page.click(this.selectors.purchaseBtn);
+        await this.nameInput.fill(data.name);
+        await this.countryInput.fill(data.country);
+        await this.cityInput.fill(data.city);
+        await this.creditCardInput.fill(data.card);
+        await this.purchaseBtn.click();
     }
 
     async getAllertHeading() {
-        return await this.page.textContent(this.selectors.afterOrderAlertHeader);
+        return await this.afterOrderAlertHeader.textContent();
     }
 }

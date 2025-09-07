@@ -4,11 +4,7 @@ export default class HomePage extends BasePage {
     constructor(page) {
         super(page);
         this.page = page;
-    }
-
-    selectors = {
-        ...this.selectors,
-        productBtn: (id) => `#tbodyid a[href="prod.html?idp_=${id}"]`,
+        this.productBtn = (id) => this.page.locator(`.card-title a[href="prod.html?idp_=${id}"]`);
     }
 
     async navigate() {
@@ -16,6 +12,6 @@ export default class HomePage extends BasePage {
     }
 
     async openProduct(id) {
-        await this.page.click(this.selectors.productBtn(id));
+        await this.productBtn(id).click();
     }
 }
