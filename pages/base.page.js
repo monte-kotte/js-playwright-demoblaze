@@ -4,12 +4,9 @@ import { waitForVisible } from '../utils/wait.js';
 export default class BasePage {
     constructor(page) {
         this.page = page;
-    }
-
-    selectors = {
-        cartBtn: '#cartur',
-        loginBtn: '#login2',
-        currentUser: '#nameofuser',
+        this.cartBtn = this.page.locator('#cartur');
+        this.loginBtn = this.page.locator('#login2');
+        this.currentUser = this.page.locator('#nameofuser');
     }
 
     async expectTitleContains(text) {
@@ -17,15 +14,15 @@ export default class BasePage {
     }
 
     async openCart() {
-        await this.page.click(this.selectors.cartBtn);
+        await this.cartBtn.click()
     }
 
     async openLoginForm() {
-        await this.page.click(this.selectors.loginBtn);
+        await this.loginBtn.click();
     }
 
     async getCurrentUserName() {
-        const locator = await waitForVisible(this.page, this.selectors.currentUser);
+        const locator = await waitForVisible(this.currentUser);
         return locator.textContent();
     }
 }

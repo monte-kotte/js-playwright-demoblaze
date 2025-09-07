@@ -5,17 +5,15 @@ export default class LoginPage extends BasePage {
     constructor(page) {
         super(page);
         this.page = page;
-    }
 
-    selectors = {
-        username: '#loginusername',
-        password: '#loginpassword',
-        loginBtn: '#logInModal .btn-primary',
+        this.username = this.page.locator('#loginusername');
+        this.password = this.page.locator('#loginpassword');
+        this.loginBtn = this.page.locator('#logInModal .btn-primary');
     }
 
     async login(user) {
-        await this.page.fill(this.selectors.username, user.username);
-        await this.page.fill(this.selectors.password, user.password);
-        await this.page.click(this.selectors.loginBtn);
+        await this.username.fill(user.username);
+        await this.password.fill(user.password);
+        await this.loginBtn.click();
     }
 }
