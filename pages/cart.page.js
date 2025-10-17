@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import BasePage from './base.page.js';
 
 export default class CartPage extends BasePage {
@@ -10,16 +11,17 @@ export default class CartPage extends BasePage {
         this.placeOrderBtn = this.page.locator('button[data-target="#orderModal"]');
 
     }
-    async getProductTitle() {
-        return await this.productTitle.textContent();
-    }
-
-    async getProductPrice() {
-        const price = await this.productPrice.textContent();
-        return `$${price}`;
-    }
 
     async placeOrder() {
         await this.placeOrderBtn.click();
+    }
+
+    async validateProductTitle(title) {
+        await expect(this.productTitle).toHaveText(title);
+    }
+
+    async validateProductPrice(price) {
+        const actualPrice = await this.productPrice.textContent();
+        expect(`$${actualPrice}`).toBe(price);
     }
 }

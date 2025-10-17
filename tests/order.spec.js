@@ -12,11 +12,9 @@ test.describe('Order', () => {
         await pm.productPage.addProductToCart();
         // Check product in cart
         await pm.productPage.openCart();
-        const cartProductTitle = await pm.cartPage.getProductTitle();
-        const cartProductPrice = await pm.cartPage.getProductPrice();
 
-        await expect(cartProductTitle).toBe(testProduct.title);
-        await expect(cartProductPrice).toBe(testProduct.price);
+        await pm.cartPage.validateProductTitle(testProduct.title);
+        await pm.cartPage.validateProductPrice(testProduct.price);
 
         // Place order and fill the form
         await pm.cartPage.placeOrder();
