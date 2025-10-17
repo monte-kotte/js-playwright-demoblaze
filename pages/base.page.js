@@ -1,5 +1,4 @@
 import { expect } from '@playwright/test';
-import { waitForVisible } from '../utils/wait.js';
 
 export default class BasePage {
     constructor(page) {
