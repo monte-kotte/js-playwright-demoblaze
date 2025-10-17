@@ -9,10 +9,6 @@ export default class BasePage {
         this.currentUser = this.page.locator('#nameofuser');
     }
 
-    async expectTitleContains(text) {
-        await expect(this.page).toHaveTitle(new RegExp(text));
-    }
-
     async openCart() {
         await this.cartBtn.click()
     }
@@ -21,8 +17,11 @@ export default class BasePage {
         await this.loginBtn.click();
     }
 
-    async getCurrentUserName() {
-        const locator = await waitForVisible(this.currentUser);
-        return locator.textContent();
+    async validatePageTitle(text) {
+        await expect(this.page).toHaveTitle(new RegExp(text));
+    }
+
+    async validateCurrentUserName(name) {
+        await expect(this.currentUser).toContainText(name);
     }
 }

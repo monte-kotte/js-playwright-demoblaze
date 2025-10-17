@@ -20,7 +20,6 @@ test.describe('Order', () => {
         await pm.cartPage.placeOrder();
         await pm.orderPage.fillOrderForm(order);
         // Validate success purchase
-        const result = await pm.orderPage.getAllertHeading();
-        expect(result).toBe('Thank you for your purchase!');
+        await pm.orderPage.validateAllertHeading('Thank you for your purchase!');
     });
 });

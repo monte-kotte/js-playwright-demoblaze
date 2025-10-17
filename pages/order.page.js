@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import BasePage from "./base.page";
 
 export default class OrderPage extends BasePage {
@@ -21,7 +22,7 @@ export default class OrderPage extends BasePage {
         await this.purchaseBtn.click();
     }
 
-    async getAllertHeading() {
-        return await this.afterOrderAlertHeader.textContent();
+    async validateAllertHeading(text) {
+        await expect(this.afterOrderAlertHeader).toHaveText(text);
     }
 }
