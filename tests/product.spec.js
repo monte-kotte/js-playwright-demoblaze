@@ -7,12 +7,8 @@ test.describe('Demoblaze products', () => {
         test(`check product ${product.id}: ${product.title}`, async ({ pm }) => {
             await pm.homePage.navigate();
             await pm.homePage.openProduct(product.id);
-            const productInfo = await pm.productPage.getProductInfo();
 
-            expect(productInfo.title).toBe(product.title);
-            expect(productInfo.price).toContain(product.price);
-            expect(productInfo.description.replace(/\s+/g, ' ').trim())
-                .toContain(product.description);
+            await pm.productPage.validateProductInfo(product);
         });
     });
 });

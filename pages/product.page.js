@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import BasePage from './base.page.js';
 
 export default class ProductPage extends BasePage {
@@ -15,25 +16,12 @@ export default class ProductPage extends BasePage {
         await this.page.goto(`/prod.html?idp_=${productId}`);
     }
 
-    async getProductTitle() {
-        return await this.title.textContent();
-    }
+    async validateProductInfo(product) {
+        await expect(this.title).toHaveText(product.title);
+        await expect(this.price).toContainText(product.price);
 
-    async getPrice() {
-        return await this.price.textContent();
-    }
-
-    async getFullDescription() {
-        const text = await this.fullDescription.textContent();
-        return text.replace(/\s+/g, ' ').trim();
-    }
-
-    async getProductInfo() {
-        return {
-            title: await this.getProductTitle(),
-            price: await this.getPrice(),
-            description: await this.getFullDescription(),
-        };
+        const text = await this.fullDescription.textContent();;
+        expect(text.replace(/\s+/g, ' ').trim()).toContain(product.description);
     }
 
     async addProductToCart() {
