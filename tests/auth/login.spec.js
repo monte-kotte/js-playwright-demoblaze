@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import { user } from '../../data/users.js';
 import { test } from '../../fixtures/test.setup.js';
 

@@ -1,7 +1,7 @@
-import { test } from '../fixtures/test.setup.js';
-import { expect } from '@playwright/test';
+import { MESSAGES } from '../data/constants/messages.js';
+import { order } from '../data/orders.js';
 import { product1 as testProduct } from '../data/products.js';
-import { order } from '../data/orders.js'
+import { test } from '../fixtures/test.setup.js';
 
 test.describe('Order', () => {
     test('one product purchase', async ({ pm }) => {
@@ -20,6 +20,6 @@ test.describe('Order', () => {
         await pm.cartPage.placeOrder();
         await pm.orderPage.fillOrderForm(order);
         // Validate success purchase
-        await pm.orderPage.validateAllertHeading('Thank you for your purchase!');
+        await pm.orderPage.validateAllertHeading(MESSAGES.ORDER.SUCCESS_TITLE);
     });
 });
