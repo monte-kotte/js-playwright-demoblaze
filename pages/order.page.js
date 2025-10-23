@@ -1,17 +1,25 @@
 import { expect } from '@playwright/test';
 import BasePage from "./base.page";
+import { MESSAGES } from "../data/constants/messages.js";
+import { OrderConfirmation } from "../data/order-confirmation.class.js";
 
 export default class OrderPage extends BasePage {
     constructor(page) {
         super(page);
         this.page = page;
 
+        // Order form inputs
         this.nameInput = this.page.locator('#name');
         this.countryInput = this.page.locator('#country');
         this.cityInput = this.page.locator('#city');
         this.creditCardInput = this.page.locator('#card');
         this.purchaseBtn = this.page.locator('#orderModal button.btn-primary');
-        this.afterOrderAlertHeader = this.page.locator('.sweet-alert h2');
+
+        // Order confirmation elements
+        this.confirmAlert = this.page.locator('.sweet-alert');
+        this.alertHeader = this.confirmAlert.locator('h2');
+        this.confirmationMessage = this.confirmAlert.locator('.lead');
+        this.confirmBtn = this.confirmAlert.locator('.confirm');
     }
 
     async fillOrderForm(data) {
@@ -22,7 +30,18 @@ export default class OrderPage extends BasePage {
         await this.purchaseBtn.click();
     }
 
-    async validateAllertHeading(text) {
-        await expect(this.afterOrderAlertHeader).toHaveText(text);
+    async validateOrderConfirmation(expectedTotal) {
+        // Validate success message
+        await expect(this.alertHeader).toHaveText(MESSAGES.ORDER.SUCCESS_TITLE);
+
+        // Get confirmation message and parse it into OrderConfirmation object
+        const confirmText = await this.confirmationMessage.textContent();
+        const confirmation = OrderConfirmation.fromConfirmationText(confirmText);
+
+        // Validate all confirmation details
+        confirmation.validate(expectedTotal);
+
+        // Close confirmation
+        await this.confirmBtn.click();
     }
 }
