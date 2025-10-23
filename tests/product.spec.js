@@ -5,7 +5,7 @@ test.describe('Demoblaze products', () => {
     products.forEach((product) => {
         test(`check product ${product.id}: ${product.title}`, async ({ pm }) => {
             await pm.homePage.navigate();
-            await pm.homePage.openProduct(product.id);
+            await pm.homePage.openProductByTitle(product.title);
 
             await pm.productPage.validateProductInfo(product);
         });
