@@ -5,4 +5,9 @@ export class Product {
         this.price = price;
         this.description = description;
     }
+
+    get numericPrice() {
+        // Convert price from format '$XXX' to number
+        return parseInt(this.price.replace('$', ''));
+    }
 }
