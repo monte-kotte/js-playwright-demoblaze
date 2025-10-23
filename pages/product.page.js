@@ -25,6 +25,24 @@ export default class ProductPage extends BasePage {
     }
 
     async addProductToCart() {
+        // Set up navigation and dialog promises before clicking
+        const dialogPromise = this.page.waitForEvent('dialog');
+        const addToCartRequest = this.page.waitForRequest(request =>
+            request.url().includes('/addtocart')
+        );
+
+        // Click and wait for dialog
         await this.addToCartBtn.click();
+        const dialog = await dialogPromise;
+
+        // Accept dialog and wait for request to complete
+        await Promise.all([
+            dialog.accept(),
+            addToCartRequest
+        ]);
+    }
+
+    async goHome() {
+        await this.page.goto('/');
     }
 }

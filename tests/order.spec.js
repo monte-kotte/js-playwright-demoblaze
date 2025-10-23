@@ -22,4 +22,36 @@ test.describe('Order', () => {
         // Validate success purchase
         await pm.orderPage.validateAllertHeading(MESSAGES.ORDER.SUCCESS_TITLE);
     });
+
+    test('multiple products purchase', async ({ pm }) => {
+        const { product1: phone, product10: monitor } = await import('../data/products.js');
+
+        // Add first product
+        await pm.homePage.navigate();
+        await pm.homePage.openProductByTitle(phone.title);
+        await pm.productPage.addProductToCart();
+        await pm.productPage.goHome();
+
+        // Add second product
+        await pm.homePage.openProductByTitle(monitor.title);
+        await pm.productPage.addProductToCart();
+
+        // Check products in cart
+        await pm.productPage.openCart();
+        await pm.cartPage.validateProductTitle(phone.title);
+        await pm.cartPage.validateProductPrice(phone.price);
+        await pm.cartPage.validateProductTitle(monitor.title);
+        await pm.cartPage.validateProductPrice(monitor.price);
+
+        // Calculate and validate total price
+        const expectedTotal = phone.numericPrice + monitor.numericPrice;
+        await pm.cartPage.validateTotalPrice(expectedTotal);
+
+        // Place order and fill the form
+        await pm.cartPage.placeOrder();
+        await pm.orderPage.fillOrderForm(order);
+
+        // Validate success purchase
+        await pm.orderPage.validateAllertHeading(MESSAGES.ORDER.SUCCESS_TITLE);
+    });
 });
