@@ -1,4 +1,3 @@
-import BasePage from '../base.page.js';
 import CartPage from '../cart.page.js';
 import HomePage from '../home.page.js';
 import LoginPage from '../login.page.js';

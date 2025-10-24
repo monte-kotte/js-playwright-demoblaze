@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
-import BasePage from "./base.page";
 import { MESSAGES } from "../data/constants/messages.js";
 import { OrderConfirmation } from "../data/order-confirmation.class.js";
+import BasePage from "./base.page";
 
 export default class OrderPage extends BasePage {
     constructor(page) {
