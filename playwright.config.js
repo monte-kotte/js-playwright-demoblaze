@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 module.exports = defineConfig({
-  testDir: './tests',
+  testDir: '.',
   timeout: 60 * 1000,
   expect: {
     timeout: 10000,
@@ -23,7 +23,7 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'auth-setup',
-      testMatch: /.*\.auth\.setup\.js/,
+      testMatch: 'fixtures/auth.setup.js',
     },
     {
       name: 'chromium-auth',

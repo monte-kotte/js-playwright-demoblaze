@@ -3,7 +3,7 @@ import { MESSAGES } from '../data/constants/messages.js';
 import { order } from '../data/orders.js';
 import { products } from '../data/products.js';
 
-test.describe('Order placement', () => {
+test.describe('Order placement @order', () => {
     test.beforeEach(async ({ pm }) => {
         await pm.homePage.navigate();
     });
