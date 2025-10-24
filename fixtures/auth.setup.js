@@ -1,11 +1,11 @@
-import { test } from '@playwright/test';
+import { test as setup } from '@playwright/test';
 import path from 'path';
 import { user } from '../data/users.js';
 import PomManager from '../pages/manager/pom.manager.js';
 
 const STORAGE_STATE = path.resolve(__dirname, '../playwright/.auth/user.json');
 
-test('authenticate', async ({ browser }) => {
+setup('authenticate', async ({ browser }) => {
     const context = await browser.newContext({
         baseURL: process.env.BASE_URL
     });

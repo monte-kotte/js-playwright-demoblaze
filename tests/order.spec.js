@@ -1,5 +1,4 @@
 import { test } from '../fixtures/test.setup.js';
-import { MESSAGES } from '../data/constants/messages.js';
 import { order } from '../data/orders.js';
 import { products } from '../data/products.js';
 
