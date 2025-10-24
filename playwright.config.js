@@ -31,7 +31,7 @@ module.exports = defineConfig({
       use: {
         browserName: 'chromium',
         storageState: 'playwright/.auth/user.json',
-        headless: false,
+        headless: process.env.CI ? true : false,
         screenshot: 'only-on-failure',
         trace: 'on-first-retry',
       },
@@ -42,7 +42,7 @@ module.exports = defineConfig({
       testIgnore: /tests\/auth\/.*/,
       use: {
         browserName: 'chromium',
-        headless: false,
+        headless: process.env.CI ? true : false,
         screenshot: 'only-on-failure',
         trace: 'on-first-retry',
       },
